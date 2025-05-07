@@ -4,14 +4,17 @@ const sequelize  = require('./config/database');
 
 // 1. Register models so sync() sees them
 require('./models/Book');
+require('./models/Member')
 
 const bookRoutes = require('./routes/bookRoutes');
+const memberRoutes = require('./routes/memberRoutes')
 
 const app = express();
 app.use(express.json());              // parse JSON bodies
 
 // 2. Mount the Book routes
 app.use('/books', bookRoutes);
+app.use('/members', memberRoutes)
 
 // 3. Central error handler
 app.use((err, req, res, next) => {
